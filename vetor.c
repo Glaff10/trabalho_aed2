@@ -35,7 +35,7 @@ void preencheListaVetor (int n, tipoLista *lista,int v[]){
 	for(i = 0;i<n;i++){
 		valor = (i<0)?(rand()%):(rand()%);
 		v[i] = valor;
-		inserirLista(&lista, valor);
+		inserirListaEncadeada(&lista, valor);
 
 
 	}
