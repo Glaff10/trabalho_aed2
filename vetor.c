@@ -1,11 +1,14 @@
 #include "vetor.c"
+#include <stdlib.h>
+#include <time.h>
 
 
-void criarLista(tipoLista *p){
+void criarListaEncadeada(tipoLista *p){
 	p->prim = NULL;
 }
 
-void inserirLista(tipoLista *p, int num){
+
+void inserirListaEncadeada(tipoLista *p, int num){
 	tipoNo *aux;
 	 aux = (tipoNo *) malloc (sizeof(tipoNo));
 	 aux->d = num;
@@ -14,15 +17,16 @@ void inserirLista(tipoLista *p, int num){
 	 p->prim = aux;
 
 }
-void preencheVetorDesordenado (int n,,int v[]){
-	int valor,i;
 
-	for(i = 0;i<n;i++){
-		valor = rand()%1000000000 + 1;
-		v[i] = valor;
-	}
-	
+
+
+void preencheVetorOrdenado(int n, int v[]){
+	clock_t t;
+	srand((unsigned)time(t));
+	for(int i=0; i<n; i++)
+		v[i] =  (i>0)?(v[i-1] + rand()%10+1):(rand()%10+1);
 }
+
 
 
 void preencheListaVetor (int n, tipoLista *lista,int v[]){
@@ -37,6 +41,7 @@ void preencheListaVetor (int n, tipoLista *lista,int v[]){
 	}
 }
 
+
 void preencheVetorDesordenado (int n,,int v[]){
 	int valor,i;
 
@@ -44,14 +49,38 @@ void preencheVetorDesordenado (int n,,int v[]){
 		valor = rand()%1000000000 + 1;
 		v[i] = valor;
 	}
+	
+	
 
+int buscaBinariaVetor(int chave, int n, int v[]){
+	int ini = 0, fim = n-1, meio;
+	while(ini<=fim){
+		meio = (ini+fim)/2;
+		if(v[meio] < chave)
+			ini = meio + 1;
+		else if(v[meio] > chave)
+			fim = meio - 1;
+		else
+			return meio;
+	}
+	return -1;
+}
+	
 
+int BuscaSequencialVetor(int chave, int n, int v[]){
+	for(int i=0; i<n; i++)
+		if(v[i] == chave)
+			return i;
+	return -1;
+}
 
+	
+	
+	
 void insertionSort(int  v[], int tamanho) {
     int i, j;
     int pivot;
 
-    
     for(j = 1; j < tamanho; j++ ) {
       i = j -1;
       pivot = v[j];
@@ -64,6 +93,7 @@ void insertionSort(int  v[], int tamanho) {
   }
 
   
+	
 void bubbleSort (int vetor[], int n) {
     int k, j, aux;
 
@@ -81,12 +111,12 @@ void bubbleSort (int vetor[], int n) {
         }
     }
 }
+	
+	
 
 void quickSort(int v[], int tamanho) {
-
   qSortInterno(v, 0, tamanho-1);
 }
-
 
 void qSortInterno(int v[], int inicio, int fim) {
   int pivot;
@@ -112,6 +142,3 @@ void qSortInterno(int v[], int inicio, int fim) {
     qSortInterno(v, i,fim);
   }
 }
-
-
-
