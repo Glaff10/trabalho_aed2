@@ -8,15 +8,28 @@ void criarListaEncadeada(tipoLista *p){
 }
 
 
-void inserirListaEncadeada(tipoLista *p, int num){
-	tipoNo *aux;
-	 aux = (tipoNo *) malloc (sizeof(tipoNo));
-	 aux->d = num;
 
-	 aux->prox = p->prim;
-	 p->prim = aux;
-
+No* CriaNo(int num){
+	No*aux;
+	aux = (No*)malloc(sizeof(No));
+	aux->prox = NULL;
+	aux->d = num;
+	return aux;
 }
+
+void CriaNoListaEncadeada(ListaEncadeada *lista, int num){
+	No*i = lista->prim;
+	if(i){
+		No*j = lista->ult;
+		j->prox = CriaNode(num);
+		lista->ult = j->prox;
+	}
+	else{
+		lista->prim = CriaNo(num);
+		lista->ult = lista->prim;
+	}
+}
+
 
 
 
@@ -35,7 +48,7 @@ void preencheListaVetor (int n, tipoLista *lista,int v[]){
 	for(i = 0;i<n;i++){
 		valor = (i<0)?(rand()%):(rand()%);
 		v[i] = valor;
-		inserirListaEncadeada(&lista, valor);
+		CriaNoListaEncadeada(&lista, valor);
 
 
 	}
@@ -74,10 +87,19 @@ int BuscaSequencialVetor(int chave, int n, int v[]){
 	return -1;
 }
 
+int BuscaSequencialListaEncadeada(int chave, tipoLista lista){
+	for(No* i = lista.prim; ; i = i->prox){
+		if(!i)
+			break;
+		if(i->d == chave)
+			return 1;
+	}
+	return 0;
+}
 	
 	
 	
-void insertionSort(int  v[], int tamanho) {
+void insertionSort(int  v[], int tamanho){
     int i, j;
     int pivot;
 
@@ -94,7 +116,7 @@ void insertionSort(int  v[], int tamanho) {
 
   
 	
-void bubbleSort (int vetor[], int n) {
+void bubbleSort (int vetor[], int n){
     int k, j, aux;
 
     for (k = 1; k < n; k++) {
