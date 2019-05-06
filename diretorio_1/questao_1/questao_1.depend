@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1554890149 source:c:\users\mega store\desktop\diretorio_1\vetor.c
+	"vetor.h"
+	<stdlib.h>
+	<time.h>
+
+1554889920 c:\users\mega store\desktop\diretorio_1\vetor.h
+
+1554892200 source:c:\users\mega store\desktop\diretorio_1\questao_1\vetor.c
+	"vetor.h"
+
+1554892289 c:\users\mega store\desktop\diretorio_1\questao_1\vetor.h
+	<time.h>
+	<stdlib.h>
+	<time.h>
+	<stdio.h>
+
+1554891375 source:c:\users\mega store\desktop\diretorio_1\questao_1\main.c
+	"vetor.h"
+
